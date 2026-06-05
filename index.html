@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selvabharathi S - Interactive Resume</title>
+    <title>Selvabharathi S - Premium Portfolio</title>
     <style>
         :root {
             --bg-color: #f4f7f6;
@@ -13,19 +13,21 @@
             --text-color: #333333;
             --text-muted: #555555;
             --border-color: #ecf0f1;
-            --shadow: 0 4px 15px rgba(0,0,0,0.08);
-            --transition: all 0.3s ease;
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --skill-bg: #e0e0e0;
         }
 
         [data-theme="dark"] {
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --primary-color: #ecf0f1;
-            --secondary-color: #3498db;
+            --bg-color: #0f0f11;
+            --card-bg: #1a1a1e;
+            --primary-color: #ffffff;
+            --secondary-color: #5dade2;
             --text-color: #e0e0e0;
-            --text-muted: #b0b0b0;
-            --border-color: #2c3e50;
-            --shadow: 0 4px 15px rgba(0,0,0,0.4);
+            --text-muted: #a0a0a0;
+            --border-color: #2c2c35;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+            --skill-bg: #33333b;
         }
 
         body {
@@ -40,20 +42,20 @@
 
         .container {
             max-width: 900px;
-            margin: 30px auto;
+            margin: 40px auto 120px auto;
             background: var(--card-bg);
-            padding: 40px;
+            padding: 50px;
             box-shadow: var(--shadow);
-            border-radius: 12px;
+            border-radius: 20px;
             position: relative;
             transition: var(--transition);
         }
 
-        /* Theme Toggle Button */
+        /* Interactive Theme Button */
         .theme-toggle-btn {
             position: absolute;
-            top: 25px;
-            right: 25px;
+            top: 30px;
+            right: 30px;
             background: var(--border-color);
             border: none;
             width: 45px;
@@ -65,139 +67,130 @@
             justify-content: center;
             font-size: 1.3rem;
             transition: var(--transition);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .theme-toggle-btn:hover {
             transform: scale(1.1) rotate(15deg);
+            background: var(--secondary-color);
+            color: white;
         }
 
-        /* Header Layout */
+        /* Header Elements */
         header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 3px solid var(--secondary-color);
-            padding-bottom: 25px;
-            margin-bottom: 30px;
+            padding-bottom: 35px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .header-text h1 {
             margin: 0 0 5px 0;
-            font-size: 2.6rem;
+            font-size: 2.8rem;
             color: var(--primary-color);
-            letter-spacing: 1px;
+            font-weight: 800;
         }
 
         .header-text h2 {
-            margin: 0 0 15px 0;
-            font-size: 1.25rem;
+            margin: 0 0 20px 0;
+            font-size: 1.3rem;
             color: var(--secondary-color);
             font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
 
         .contact-info p {
-            margin: 6px 0;
+            margin: 0;
             font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .contact-info a {
-            color: var(--text-color);
+            color: var(--text-muted);
             text-decoration: none;
             transition: var(--transition);
-            font-weight: 500;
         }
 
-        .contact-info a:not(.download-btn):hover {
+        .contact-info a:hover {
             color: var(--secondary-color);
-            padding-left: 5px;
-        }
-
-        /* Download Resume Button styling */
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background-color: var(--secondary-color);
-            color: #ffffff !important;
-            padding: 8px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: var(--transition);
-            margin-top: 10px;
-        }
-
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4);
+            padding-left: 4px;
         }
 
         .profile-img {
-            width: 130px;
-            height: 160px;
+            width: 140px;
+            height: 170px;
             object-fit: cover;
-            border-radius: 8px;
-            border: 3px solid var(--border-color);
+            border-radius: 16px;
+            border: 4px solid var(--border-color);
+            box-shadow: var(--shadow);
             transition: var(--transition);
         }
 
         .profile-img:hover {
-            transform: scale(1.05);
+            transform: scale(1.05) rotate(2deg);
             border-color: var(--secondary-color);
         }
 
         /* Sections */
         section {
-            margin-bottom: 35px;
+            margin-bottom: 45px;
         }
 
         h3 {
             color: var(--primary-color);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 6px;
+            font-size: 1.4rem;
             margin-top: 0;
-            font-size: 1.3rem;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: var(--border-color);
         }
 
         p {
-            margin: 0 0 10px 0;
             text-align: justify;
             color: var(--text-muted);
         }
 
-        /* Grid Layouts */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 35px;
         }
 
+        /* Interactive Dynamic Cards */
         .interactive-card {
-            background: rgba(128, 128, 128, 0.03);
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid transparent;
+            background: rgba(128, 128, 128, 0.02);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
             transition: var(--transition);
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         .interactive-card:hover {
-            background: rgba(128, 128, 128, 0.07);
-            border-left-color: var(--secondary-color);
-            transform: translateY(-2px);
+            background: var(--card-bg);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: var(--secondary-color);
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
-            font-weight: bold;
+            font-weight: 700;
             color: var(--primary-color);
         }
 
@@ -205,84 +198,147 @@
             font-style: italic;
             color: var(--text-muted);
             font-size: 0.95rem;
-            margin-bottom: 6px;
+            margin-bottom: 10px;
         }
 
-        /* Skill Pill Tags */
-        .skills-container {
+        /* Interactive Animated Skill Levels */
+        .skill-bar-wrapper {
+            margin-bottom: 15px;
+        }
+
+        .skill-info {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding: 5px 0;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 5px;
         }
 
-        .skill-tag {
+        .skill-bar-bg {
+            background: var(--skill-bg);
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-progress {
+            background: linear-gradient(90deg, var(--secondary-color), #2ecc71);
+            height: 100%;
+            border-radius: 10px;
+            width: 0; /* Animated dynamically via JS */
+            transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1);
+        }
+
+        /* Interactive Projects Tab View Layout */
+        .tabs-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
             background: var(--border-color);
             color: var(--text-color);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
             transition: var(--transition);
-            border: 1px solid transparent;
         }
 
-        .skill-tag:hover {
+        .tab-btn.active, .tab-btn:hover {
             background: var(--secondary-color);
-            color: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+            color: white;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         ul {
-            margin: 5px 0 0 0;
             padding-left: 20px;
             color: var(--text-muted);
         }
 
         li {
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
-        .declaration {
-            font-style: italic;
-            margin-top: 40px;
-            font-size: 0.9rem;
+        /* Sticky/Bottom Download Action Section */
+        .bottom-action-container {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
         }
 
-        .sig-space {
-            margin-top: 30px;
-            display: flex;
-            justify-content: space-between;
-            color: var(--text-muted);
+        .download-btn-premium {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--secondary-color), #2980b9);
+            color: white !important;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn-premium:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.5);
+        }
+
+        .download-btn-premium svg {
+            fill: white;
+            width: 20px;
+            height: 20px;
+            transition: var(--transition);
+        }
+
+        .download-btn-premium:hover svg {
+            transform: translateY(2px);
         }
 
         /* Responsive Layout styles */
         @media (max-width: 768px) {
             .container {
-                margin: 10px;
-                padding: 20px;
+                margin: 15px;
+                padding: 25px;
             }
             header {
                 flex-direction: column-reverse;
                 text-align: center;
-                gap: 15px;
-                padding-top: 30px;
+                gap: 20px;
             }
-            .theme-toggle-btn {
-                top: 15px;
-                right: 15px;
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
             .grid-2 {
                 grid-template-columns: 1fr;
-                gap: 10px;
+                gap: 20px;
             }
             .card-header {
                 flex-direction: column;
-            }
-            .sig-space {
-                flex-direction: column;
-                gap: 20px;
+                gap: 5px;
             }
         }
     </style>
@@ -290,7 +346,7 @@
 <body>
 
 <div class="container">
-    <!-- Dark/Light Mode Switcher Tool -->
+    <!-- Dark/Light Theme Switching Icon Button -->
     <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Theme">
         ☀️
     </button>
@@ -300,20 +356,14 @@
         <div class="header-text">
             <h1>SELVABHARATHI S</h1>
             <h2>B.Tech. Information Technology</h2>
-            <div class="contact-info">
-                <p>📞 +91 7603861914</p>
+            <div class="contact-grid">
+                <p>📞 <a href="tel:+917603861914">+91 7603861914</a></p>
                 <p>✉️ <a href="mailto:sselvabharathi1512@gmail.com">sselvabharathi1512@gmail.com</a></p>
                 <p>🔗 <a href="https://linkedin.com/in/selvabharathi15" target="_blank">linkedin.com/in/selvabharathi15</a></p>
                 <p>💻 <a href="https://github.com/SELVABHARATHI15" target="_blank">github.com/SELVABHARATHI15</a></p>
-                <p>
-                    <!-- Resume Download Link Pointing directly to root directory -->
-                    <a href="Selvabharathi_S_Resume.pdf" download="Selvabharathi_S_Resume.pdf" class="download-btn">
-                        📥 Download Resume (PDF)
-                    </a>
-                </p>
             </div>
         </div>
-        <!-- Profile Picture - ensure image name matches profile.jpg -->
+        <!-- Profile Picture switched cleanly to target PNG layout extension format -->
         <img src="profile.png" alt="Selvabharathi S" class="profile-img">
     </header>
 
@@ -323,9 +373,9 @@
         <p>Aspiring IT professional with skills in software development and computer networking, seeking an opportunity to contribute to application development and network infrastructure management while continuously enhancing technical expertise.</p>
     </section>
 
-    <!-- Education and Technical Skills Layout Blocks -->
+    <!-- Split Grid Layout for Education and Interactive Skill Levels -->
     <div class="grid-2">
-        <!-- Education Container Section -->
+        <!-- Education Section Grid Block -->
         <section>
             <h3>Educational Profile</h3>
             <div class="interactive-card">
@@ -334,7 +384,7 @@
                     <span>2022 - 2026</span>
                 </div>
                 <div class="sub-header">E.G.S Pillay Engineering College, Nagapattinam</div>
-                <div style="color: var(--secondary-color); font-weight: 600;">CGPA: 7.3</div>
+                <div style="color: var(--secondary-color); font-weight: bold;">CGPA: 7.3</div>
             </div>
             <div class="interactive-card">
                 <div class="card-header">
@@ -342,7 +392,7 @@
                     <span>2022</span>
                 </div>
                 <div class="sub-header">Manba Ul Ula Hr. Sec. School, Koothanallur</div>
-                <div style="color: var(--secondary-color); font-weight: 600;">Percentage: 79%</div>
+                <div style="color: var(--secondary-color); font-weight: bold;">Percentage: 79%</div>
             </div>
             <div class="interactive-card">
                 <div class="card-header">
@@ -350,63 +400,67 @@
                     <span>2020</span>
                 </div>
                 <div class="sub-header">Govt. Hr. Sec. School, Vadapathimangalam</div>
-                <div style="color: var(--secondary-color); font-weight: 600;">Percentage: 65%</div>
+                <div style="color: var(--secondary-color); font-weight: bold;">Percentage: 65%</div>
             </div>
         </section>
 
-        <!-- Technical Skill Pill Tags Element Blocks -->
+        <!-- Technical Animated Skill Bar Progress Grid Blocks -->
         <section>
             <h3>Technical Skills</h3>
-            <p><strong>Programming:</strong></p>
-            <div class="skills-container">
-                <span class="skill-tag">C</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">Java</span>
+            
+            <div class="skill-bar-wrapper">
+                <div class="skill-info"><span>Web Technologies (Node, HTML, JS)</span><span>85%</span></div>
+                <div class="skill-bar-bg"><div class="skill-progress" data-progress="85%"></div></div>
             </div>
-            <p style="margin-top: 15px;"><strong>Web & Databases:</strong></p>
-            <div class="skills-container">
-                <span class="skill-tag">HTML</span>
-                <span class="skill-tag">CSS</span>
-                <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">Node.js</span>
-                <span class="skill-tag">SQL</span>
+
+            <div class="skill-bar-wrapper">
+                <div class="skill-info"><span>Programming (Java, Python, C)</span><span>80%</span></div>
+                <div class="skill-bar-bg"><div class="skill-progress" data-progress="80%"></div></div>
             </div>
-            <p style="margin-top: 15px;"><strong>Tools & Networks:</strong></p>
-            <div class="skills-container">
-                <span class="skill-tag">Cisco Packet Tracer</span>
-                <span class="skill-tag">Git</span>
-                <span class="skill-tag">GitHub</span>
-                <span class="skill-tag">VS Code</span>
+
+            <div class="skill-bar-wrapper">
+                <div class="skill-info"><span>Databases (SQL, MongoDB)</span><span>75%</span></div>
+                <div class="skill-bar-bg"><div class="skill-progress" data-progress="75%"></div></div>
             </div>
-            <p style="margin-top: 15px;"><strong>Languages:</strong></p>
-            <div class="skills-container">
-                <span class="skill-tag">Tamil</span>
-                <span class="skill-tag">English</span>
+
+            <div class="skill-bar-wrapper">
+                <div class="skill-info"><span>Networking (Cisco Packet Tracer)</span><span>70%</span></div>
+                <div class="skill-bar-bg"><div class="skill-progress" data-progress="70%"></div></div>
+            </div>
+
+            <div class="skill-bar-wrapper">
+                <div class="skill-info"><span>Tools (Git, GitHub, VS Code)</span><span>85%</span></div>
+                <div class="skill-bar-bg"><div class="skill-progress" data-progress="85%"></div></div>
             </div>
         </section>
     </div>
 
-    <!-- Project Presentation -->
+    <!-- Interactive Projects Area with Dynamic Tab Swapper Logic -->
     <section>
         <h3>Projects</h3>
-        <div class="interactive-card">
+        <div class="tabs-nav">
+            <button class="tab-btn active" onclick="switchTab(event, 'pii-app')">PII Detection App</button>
+            <button class="tab-btn" onclick="switchTab(event, 'ecommerce-app')">E-Commerce Application</button>
+        </div>
+
+        <div id="pii-app" class="tab-content active interactive-card">
             <div class="card-header">
-                <span style="font-size: 1.1rem;">PII Detection App</span>
-                <span style="color: var(--secondary-color);">Android Studio</span>
+                <span style="font-size: 1.2rem;">PII Detection App</span>
+                <span style="color: var(--secondary-color);">Android Studio / Java</span>
             </div>
-            <p style="margin: 5px 0;">Developed an Android application to detect and blur Personally Identifiable Information (PII) in images.</p>
+            <p style="margin: 10px 0;">Developed an Android application to detect and blur Personally Identifiable Information (PII) in images.</p>
             <ul>
                 <li>Utilized Java and XML in Android Studio for UI and processing.</li>
                 <li>Implemented image processing techniques to enhance accuracy.</li>
             </ul>
         </div>
 
-        <div class="interactive-card">
+        <div id="ecommerce-app" class="tab-content interactive-card">
             <div class="card-header">
-                <span style="font-size: 1.1rem;">E-Commerce Application</span>
-                <span style="color: var(--secondary-color);">Backend Development</span>
+                <span style="font-size: 1.2rem;">E-Commerce Application</span>
+                <span style="color: var(--secondary-color);">Node.js / Express / MongoDB</span>
             </div>
-            <p style="margin: 5px 0;">Built a robust e-commerce architecture managing critical dynamic records.</p>
+            <p style="margin: 10px 0;">Built a secure, scalable dynamic dynamic transaction API ecosystem platform architecture structure handling routing paths cleanly.</p>
             <ul>
                 <li>Built using Node.js, Express.js, and MongoDB.</li>
                 <li>Added JWT-based authentication for secure access.</li>
@@ -416,11 +470,11 @@
         </div>
     </section>
 
-    <!-- Supplemental Content Grid (Courses & Events) -->
+    <!-- Supplemental Credentials Grid Section Block -->
     <div class="grid-2">
         <section>
             <h3>Courses</h3>
-            <ul style="padding-left: 15px;">
+            <ul>
                 <li><strong>Basics of Python</strong> <br><small>Infosys Springboard</small></li>
                 <li><strong>Networking & Web Tech</strong> <br><small>Infosys Springboard</small></li>
                 <li><strong>Prompt Engineering</strong> <br><small>Simplilearn</small></li>
@@ -432,7 +486,7 @@
 
         <section>
             <h3>Webinars</h3>
-            <ul style="padding-left: 15px;">
+            <ul>
                 <li>Introduction to Blockchain Systems <br><small>(Cool Coder)</small></li>
                 <li>Basics of Python <br><small>(Cool Coder)</small></li>
                 <li>Cloud Computing <br><small>(Orionshift)</small></li>
@@ -440,51 +494,62 @@
         </section>
     </div>
 
-    <!-- Formal Declaration Section block -->
-    <section class="declaration">
-        <h3>Declaration</h3>
-        <p>I hereby declare that the above information is true to the best of my knowledge and belief.</p>
-        <div class="sig-space">
-            <div>
-                <p>Date: ______________</p>
-                <p>Place: -------------</p>
-            </div>
-            <div style="text-align: right;">
-                <p><strong>[S. Selvabharathi]</strong></p>
-                <p>Signature</p>
-            </div>
-        </div>
-    </section>
+    <!-- Relocated Interactive Action Area at Bottom of Page Containing Premium Download Elements -->
+    <div class="bottom-action-container">
+        <a href="Selvabharathi_S_Resume.pdf" download="Selvabharathi_S_Resume.pdf" class="download-btn-premium">
+            <!-- Inline Responsive SVG Vector Download Icon -->
+            <svg viewBox="0 0 24 24">
+                <path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/>
+            </svg>
+            Download Full Resume (PDF)
+        </a>
+    </div>
 </div>
 
 <script>
+    // Theme Switch Logic
     const themeToggleBtn = document.getElementById('themeToggle');
-    
-    // Fallback checks system setting if local storage configuration database values don't exist
     const currentTheme = localStorage.getItem('theme') || 
                          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     
-    // Set target state flags
-    if (currentTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeToggleBtn.textContent = '🌙';
-    } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeToggleBtn.textContent = '☀️';
+    function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        themeToggleBtn.textContent = theme === 'dark' ? '🌙' : '☀️';
+        localStorage.setItem('theme', theme);
     }
 
-    // Interactive event capture
+    setTheme(currentTheme);
+
     themeToggleBtn.addEventListener('click', () => {
-        let theme = document.documentElement.getAttribute('data-theme');
-        if (theme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'light');
-            themeToggleBtn.textContent = '☀️';
-            localStorage.setItem('theme', 'light');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            themeToggleBtn.textContent = '🌙';
-            localStorage.setItem('theme', 'dark');
+        const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        setTheme(theme);
+    });
+
+    // Dynamic Project Switch Tab Actions
+    function switchTab(evt, tabId) {
+        const tabContents = document.getElementsByClassName("tab-content");
+        for (let i = 0; i < tabContents.length; i++) {
+            tabContents[i].classList.remove("active");
         }
+
+        const tabBtns = document.getElementsByClassName("tab-btn");
+        for (let i = 0; i < tabBtns.length; i++) {
+            tabBtns[i].classList.remove("active");
+        }
+
+        document.getElementById(tabId).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+
+    // Animate Technical Skill Progress Meters sequentially
+    document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(() => {
+            const progressBars = document.querySelectorAll('.skill-progress');
+            progressBars.forEach(bar => {
+                const targetWidth = bar.getAttribute('data-progress');
+                bar.style.width = targetWidth;
+            });
+        }, 300);
     });
 </script>
 </body>
