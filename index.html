@@ -49,11 +49,11 @@
             transition: var(--transition);
         }
 
-        /* Interactive Theme Button */
+        /* Fixed Theme Button Placement to prevent overlapping */
         .theme-toggle-btn {
             position: absolute;
-            top: 30px;
-            right: 30px;
+            top: 25px;
+            right: 25px;
             background: var(--border-color);
             border: none;
             width: 45px;
@@ -65,6 +65,7 @@
             justify-content: center;
             font-size: 1.3rem;
             transition: var(--transition);
+            z-index: 10; /* Ensures it stays on top without messing with layouts */
         }
 
         .theme-toggle-btn:hover {
@@ -73,11 +74,12 @@
             color: white;
         }
 
-        /* Balanced Header Layout matching size precisely */
+        /* Adjusted header to give breathing room for the toggle icon button */
         header {
             display: flex;
-            align-items: stretch; /* Forces equal height match for columns */
+            align-items: stretch;
             justify-content: space-between;
+            padding-top: 20px; /* Pushes content down away from the absolute theme button */
             padding-bottom: 35px;
             margin-bottom: 40px;
             border-bottom: 1px solid var(--border-color);
@@ -87,7 +89,7 @@
         .header-content-left {
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Ensures even distribution */
+            justify-content: space-between;
             flex: 1;
         }
 
@@ -131,7 +133,7 @@
             padding-left: 4px;
         }
 
-        /* Image dimension matching contact wrapper height */
+        /* Profile image with safe positioning dimensions */
         .profile-img {
             width: 145px;
             height: auto;
@@ -350,6 +352,7 @@
                 flex-direction: column-reverse;
                 text-align: center;
                 gap: 20px;
+                padding-top: 45px; /* Adds extra padding on mobile for toggle button clearance */
             }
             .contact-grid {
                 grid-template-columns: 1fr;
@@ -371,7 +374,7 @@
 <body>
 
 <div class="container">
-    <!-- Dark/Light Theme Switching Button -->
+    <!-- Dark/Light Theme Switching Button - Safe from Overlap -->
     <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Theme">
         ☀️
     </button>
@@ -381,23 +384,23 @@
         <div class="header-content-left">
             <div class="header-text">
                 <h1>SELVABHARATHI S</h1>
-                <h2>B.Tech. Information Technology</h2>
+                <h2>B.Tech. Information Technology[cite: 1]</h2>
             </div>
             <div class="contact-grid">
-                <p>📞 <a href="tel:+917603861914">+91 7603861914</a></p>
-                <p>✉️ <a href="mailto:sselvabharathi1512@gmail.com">sselvabharathi1512@gmail.com</a></p>
-                <p>🔗 <a href="https://linkedin.com/in/selvabharathi15" target="_blank">linkedin.com/in/selvabharathi15</a></p>
-                <p>💻 <a href="https://github.com/SELVABHARATHI15" target="_blank">github.com/SELVABHARATHI15</a></p>
+                <p>📞 <a href="tel:+917603861914">+91 7603861914</a>[cite: 1]</p>
+                <p>✉️ <a href="mailto:sselvabharathi1512@gmail.com">sselvabharathi1512@gmail.com</a>[cite: 1]</p>
+                <p>🔗 <a href="https://linkedin.com/in/selvabharathi15" target="_blank">linkedin.com/in/selvabharathi15</a>[cite: 1]</p>
+                <p>💻 <a href="https://github.com/SELVABHARATHI15" target="_blank">github.com/SELVABHARATHI15</a>[cite: 1]</p>
             </div>
         </div>
-        <!-- Profile Picture PNG formatting asset frame matching left content size exactly -->
+        <!-- Profile Picture PNG matching left layout content perfectly -->
         <img src="profile.png" alt="Selvabharathi S" class="profile-img">
     </header>
 
     <!-- Objective Area -->
     <section>
         <h3>Objective</h3>
-        <p>Aspiring IT professional with skills in software development and computer networking, seeking an opportunity to contribute to application development and network infrastructure management while continuously enhancing technical expertise.</p>
+        <p>Aspiring IT professional with skills in software development and computer networking, seeking an opportunity to contribute to application development and network infrastructure management while continuously enhancing technical expertise.[cite: 1]</p>
     </section>
 
     <!-- Split Grid Layout for Education and Interactive Skill Tags -->
@@ -410,24 +413,24 @@
                     <span>B.Tech - Information Technology</span>
                     <span>2022 - 2026</span>
                 </div>
-                <div class="sub-header">E.G.S Pillay Engineering College, Nagapattinam</div>
-                <div style="color: var(--secondary-color); font-weight: bold;">CGPA: 7.3</div>
+                <div class="sub-header">E.G.S Pillay Engineering College, Nagapattinam[cite: 1]</div>
+                <div style="color: var(--secondary-color); font-weight: bold;">CGPA: 7.3[cite: 1]</div>
             </div>
             <div class="interactive-card">
                 <div class="card-header">
                     <span>HSC</span>
                     <span>2022</span>
                 </div>
-                <div class="sub-header">Manba Ul Ula Hr. Sec. School, Koothanallur</div>
-                <div style="color: var(--secondary-color); font-weight: bold;">Percentage: 79%</div>
+                <div class="sub-header">Manba Ul Ula Hr. Sec. School, Koothanallur[cite: 1]</div>
+                <div style="color: var(--secondary-color); font-weight: bold;">Percentage: 79%[cite: 1]</div>
             </div>
             <div class="interactive-card">
                 <div class="card-header">
                     <span>SSLC</span>
                     <span>2020</span>
                 </div>
-                <div class="sub-header">Govt. Hr. Sec. School, Vadapathimangalam</div>
-                <div style="color: var(--secondary-color); font-weight: bold;">Percentage: 65%</div>
+                <div class="sub-header">Govt. Hr. Sec. School, Vadapathimangalam[cite: 1]</div>
+                <div style="color: var(--secondary-color); font-weight: bold;">Percentage: 65%[cite: 1]</div>
             </div>
         </section>
 
@@ -438,27 +441,27 @@
             <div class="skills-wrapper">
                 <label>Programming Languages</label>
                 <div class="skills-container">
-                    <span class="skill-tag">C</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">C[cite: 1]</span>
+                    <span class="skill-tag">Python[cite: 1]</span>
+                    <span class="skill-tag">Java[cite: 1]</span>
                 </div>
             </div>
 
             <div class="skills-wrapper">
                 <label>Web Technologies</label>
                 <div class="skills-container">
-                    <span class="skill-tag">HTML</span>
-                    <span class="skill-tag">CSS</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">HTML[cite: 1]</span>
+                    <span class="skill-tag">CSS[cite: 1]</span>
+                    <span class="skill-tag">JavaScript[cite: 1]</span>
+                    <span class="skill-tag">Node.js[cite: 1]</span>
                 </div>
             </div>
 
             <div class="skills-wrapper">
                 <label>Databases & Networks</label>
                 <div class="skills-container">
-                    <span class="skill-tag">SQL</span>
-                    <span class="skill-tag">Cisco Packet Tracer</span>
+                    <span class="skill-tag">SQL[cite: 1]</span>
+                    <span class="skill-tag">Cisco Packet Tracer[cite: 1]</span>
                 </div>
             </div>
 
@@ -467,17 +470,17 @@
                 <div class="skills-container">
                     <span class="skill-tag">Cursor</span>
                     <span class="skill-tag">Windsurf</span>
-                    <span class="skill-tag">Git</span>
-                    <span class="skill-tag">GitHub</span>
-                    <span class="skill-tag">VS Code</span>
+                    <span class="skill-tag">Git[cite: 1]</span>
+                    <span class="skill-tag">GitHub[cite: 1]</span>
+                    <span class="skill-tag">VS Code[cite: 1]</span>
                 </div>
             </div>
 
             <div class="skills-wrapper">
                 <label>Languages</label>
                 <div class="skills-container">
-                    <span class="skill-tag">Tamil</span>
-                    <span class="skill-tag">English</span>
+                    <span class="skill-tag">Tamil[cite: 1]</span>
+                    <span class="skill-tag">English[cite: 1]</span>
                 </div>
             </div>
         </section>
@@ -493,27 +496,27 @@
 
         <div id="pii-app" class="tab-content active interactive-card">
             <div class="card-header">
-                <span style="font-size: 1.2rem;">PII Detection App</span>
-                <span style="color: var(--secondary-color);">Android Studio</span>
+                <span style="font-size: 1.2rem;">PII Detection App[cite: 1]</span>
+                <span style="color: var(--secondary-color);">Android Studio[cite: 1]</span>
             </div>
-            <p style="margin: 10px 0;">Developed an Android application to detect and blur Personally Identifiable Information (PII) in images.</p>
+            <p style="margin: 10px 0;">Developed an Android application to detect and blur Personally Identifiable Information (PII) in images.[cite: 1]</p>
             <ul>
-                <li>Utilized Java and XML in Android Studio for UI and processing.</li>
-                <li>Implemented image processing techniques to enhance accuracy.</li>
+                <li>Utilized Java and XML in Android Studio for UI and processing.[cite: 1]</li>
+                <li>Implemented image processing techniques to enhance accuracy.[cite: 1]</li>
             </ul>
         </div>
 
         <div id="ecommerce-app" class="tab-content interactive-card">
             <div class="card-header">
-                <span style="font-size: 1.2rem;">E-Commerce Application</span>
+                <span style="font-size: 1.2rem;">E-Commerce Application[cite: 1]</span>
                 <span style="color: var(--secondary-color);">Backend Architecture</span>
             </div>
             <p style="margin: 10px 0;">Built a secure, scalable transaction engine platform backend managing core API schemas seamlessly.</p>
             <ul>
-                <li>Built using Node.js, Express.js, and MongoDB.</li>
-                <li>Added JWT-based authentication for secure access.</li>
-                <li>Developed RESTful APIs for products, users, and orders.</li>
-                <li>Ensured scalability, security, and smooth user experience.</li>
+                <li>Built using Node.js, Express.js, and MongoDB.[cite: 1]</li>
+                <li>Added JWT-based authentication for secure access.[cite: 1]</li>
+                <li>Developed RESTful APIs for products, users, and orders.[cite: 1]</li>
+                <li>Ensured scalability, security, and smooth user experience.[cite: 1]</li>
             </ul>
         </div>
     </section>
@@ -523,26 +526,26 @@
         <section>
             <h3>Courses</h3>
             <ul>
-                <li><strong>Basics of Python</strong> <br><small>Infosys Springboard</small></li>
-                <li><strong>Networking & Web Tech</strong> <br><small>Infosys Springboard</small></li>
-                <li><strong>Prompt Engineering</strong> <br><small>Simplilearn</small></li>
-                <li><strong>Generative AI Studio</strong> <br><small>Simplilearn</small></li>
-                <li><strong>DBMS Systems</strong> <br><small>Infosys Springboard</small></li>
-                <li><strong>Mobile App Dev</strong> <br><small>DATANERZ.AI</small></li>
+                <li><strong>Basics of Python</strong> <br><small>Infosys Springboard[cite: 1]</small></li>
+                <li><strong>Networking & Web Tech</strong> <br><small>Infosys Springboard[cite: 1]</small></li>
+                <li><strong>Prompt Engineering</strong> <br><small>Simplilearn[cite: 1]</small></li>
+                <li><strong>Generative AI Studio</strong> <br><small>Simplilearn[cite: 1]</small></li>
+                <li><strong>DBMS Systems</strong> <br><small>Infosys Springboard[cite: 1]</small></li>
+                <li><strong>Mobile App Dev</strong> <br><small>DATANERZ.AI[cite: 1]</small></li>
             </ul>
         </section>
 
         <section>
             <h3>Webinars</h3>
             <ul>
-                <li>Introduction to Blockchain Systems <br><small>(Cool Coder)</small></li>
-                <li>Basics of Python <br><small>(Cool Coder)</small></li>
-                <li>Cloud Computing <br><small>(Orionshift)</small></li>
+                <li>Introduction to Blockchain Systems <br><small>(Cool Coder)[cite: 1]</small></li>
+                <li>Basics of Python <br><small>(Cool Coder)[cite: 1]</small></li>
+                <li>Cloud Computing <br><small>(Orionshift)[cite: 1]</small></li>
             </ul>
         </section>
     </div>
 
-    <!-- Premium Relocated Action Section Containing Resume Download Links -->
+    <!-- Premium Action Section Containing Resume Download Links -->
     <div class="bottom-action-container">
         <a href="Selvabharathi_S_Resume.pdf" download="Selvabharathi_S_Resume.pdf" class="download-btn-premium">
             <svg viewBox="0 0 24 24">
