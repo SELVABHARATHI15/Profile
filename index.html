@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selvabharathi S - Interactive Resume</title>
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --text-color: #333333;
+            --text-muted: #555555;
+            --border-color: #ecf0f1;
+            --shadow: 0 4px 15px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --primary-color: #ecf0f1;
+            --secondary-color: #3498db;
+            --text-color: #e0e0e0;
+            --text-muted: #b0b0b0;
+            --border-color: #2c3e50;
+            --shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: var(--card-bg);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            border-radius: 12px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        /* Interactive Theme Toggle Button */
+        .theme-toggle-btn {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: var(--border-color);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: var(--transition);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        /* Header Layout */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 25px;
+            margin-bottom: 30px;
+        }
+
+        .header-text h1 {
+            margin: 0 0 5px 0;
+            font-size: 2.6rem;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        .header-text h2 {
+            margin: 0 0 15px 0;
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .contact-info p {
+            margin: 6px 0;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-info a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .contact-info a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .profile-img {
+            width: 130px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 3px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            border-color: var(--secondary-color);
+        }
+
+        /* Sections & Interaction */
+        section {
+            margin-bottom: 35px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 6px;
+            margin-top: 0;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        p {
+            margin: 0 0 10px 0;
+            text-align: justify;
+            color: var(--text-muted);
+        }
+
+        /* Interactive Grid Blocks */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .interactive-card {
+            background: rgba(128, 128, 128, 0.03);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid transparent;
+            transition: var(--transition);
+            margin-bottom: 12px;
+        }
+
+        .interactive-card:hover {
+            background: rgba(128, 128, 128, 0.07);
+            border-left-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .sub-header {
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        /* Interactive Skill Tags */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 5px 0;
+        }
+
+        .skill-tag {
+            background: var(--border-color);
+            color: var(--text-color);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .skill-tag:hover {
+            background: var(--secondary-color);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        ul {
+            margin: 5px 0 0 0;
+            padding-left: 20px;
+            color: var(--text-muted);
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .declaration {
+            font-style: italic;
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+
+        .sig-space {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+            header {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 15px;
+                padding-top: 30px;
+            }
+            .theme-toggle-btn {
+                top: 15px;
+                right: 15px;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .card-header {
+                flex-direction: column;
+            }
+            .sig-space {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Dark/Light Theme Toggle Switch Button -->
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Theme">
+        <!-- Sun icon (will switch to Moon via JS) -->
+        ☀️
+    </button>
+
+    <!-- Header Section -->
+    <header>
+        <div class="header-text">
+            <h1>SELVABHARATHI S</h1>
+            <h2>B.Tech. Information Technology</h2>
+            <div class="contact-info">
+                <p>📞 +91 7603861914</p>
+                <p>✉️ <a href="mailto:sselvabharathi1512@gmail.com">sselvabharathi1512@gmail.com</a></p>
+                <p>🔗 <a href="https://linkedin.com/in/selvabharathi15" target="_blank">linkedin.com/in/selvabharathi15</a></p>
+                <p>💻 <a href="https://github.com/SELVABHARATHI15" target="_blank">github.com/SELVABHARATHI15</a></p>
+            </div>
+        </div>
+        <!-- Default profile frame. Switch 'profile.jpg' with your photo filename -->
+        <img src="profile.jpg" alt="Selvabharathi S" class="profile-img">
+    </header>
+
+    <!-- Objective Section -->
+    <section>
+        <h3>Objective</h3>
+        <p>Aspiring IT professional with skills in software development and computer networking, seeking an opportunity to contribute to application development and network infrastructure management while continuously enhancing technical expertise.</p>
+    </section>
+
+    <!-- Education & Skills Split Grid -->
+    <div class="grid-2">
+        <!-- Education Section -->
+        <section>
+            <h3>Educational Profile</h3>
+            <div class="interactive-card">
+                <div class="card-header">
+                    <span>B.Tech - IT</span>
+                    <span>2022 - 2026</span>
+                </div>
+                <div class="sub-header">E.G.S Pillay Engineering College, Nagapattinam</div>
+                <div style="color: var(--secondary-color); font-weight: 600;">CGPA: 7.3</div>
+            </div>
+            <div class="interactive-card">
+                <div class="card-header">
+                    <span>HSC</span>
+                    <span>2022</span>
+                </div>
+                <div class="sub-header">Manba Ul Ula Hr. Sec. School, Koothanallur</div>
+                <div style="color: var(--secondary-color); font-weight: 600;">Percentage: 79%</div>
+            </div>
+            <div class="interactive-card">
+                <div class="card-header">
+                    <span>SSLC</span>
+                    <span>2020</span>
+                </div>
+                <div class="sub-header">Govt. Hr. Sec. School, Vadapathimangalam</div>
+                <div style="color: var(--secondary-color); font-weight: 600;">Percentage: 65%</div>
+            </div>
+        </section>
+
+        <!-- Interactive Technical Skills Tags Section -->
+        <section>
+            <h3>Technical Skills</h3>
+            <p><strong>Programming:</strong></p>
+            <div class="skills-container">
+                <span class="skill-tag">C</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Java</span>
+            </div>
+            <p style="margin-top: 15px;"><strong>Web & Databases:</strong></p>
+            <div class="skills-container">
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">CSS</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">SQL</span>
+            </div>
+            <p style="margin-top: 15px;"><strong>Tools & Networks:</strong></p>
+            <div class="skills-container">
+                <span class="skill-tag">Cisco Packet Tracer</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">GitHub</span>
+                <span class="skill-tag">VS Code</span>
+            </div>
+            <p style="margin-top: 15px;"><strong>Languages:</strong></p>
+            <div class="skills-container">
+                <span class="skill-tag">Tamil</span>
+                <span class="skill-tag">English</span>
+            </div>
+        </section>
+    </div>
+
+    <!-- Projects Section -->
+    <section>
+        <h3>Projects</h3>
+        <div class="interactive-card">
+            <div class="card-header">
+                <span style="font-size: 1.1rem;">PII Detection App</span>
+                <span style="color: var(--secondary-color);">Android Studio</span>
+            </div>
+            <p style="margin: 5px 0;">Developed an Android application to detect and blur Personally Identifiable Information (PII) in images.</p>
+            <ul>
+                <li>Utilized Java and XML in Android Studio for UI and processing.</li>
+                <li>Implemented image processing techniques to enhance accuracy.</li>
+            </ul>
+        </div>
+
+        <div class="interactive-card">
+            <div class="card-header">
+                <span style="font-size: 1.1rem;">E-Commerce Application</span>
+                <span style="color: var(--secondary-color);">Backend Development</span>
+            </div>
+            <p style="margin: 5px 0;">Built a robust e-commerce architecture managing critical dynamic records.</p>
+            <ul>
+                <li>Built using Node.js, Express.js, and MongoDB.</li>
+                <li>Added JWT-based authentication for secure access.</li>
+                <li>Developed RESTful APIs for products, users, and orders.</li>
+                <li>Ensured scalability, security, and smooth user experience.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Courses & Webinars Side-by-Side -->
+    <div class="grid-2">
+        <section>
+            <h3>Courses</h3>
+            <ul style="padding-left: 15px;">
+                <li><strong>Basics of Python</strong> <br><small>Infosys Springboard</small></li>
+                <li><strong>Networking & Web Tech</strong> <br><small>Infosys Springboard</small></li>
+                <li><strong>Prompt Engineering</strong> <br><small>Simplilearn</small></li>
+                <li><strong>Generative AI Studio</strong> <br><small>Simplilearn</small></li>
+                <li><strong>DBMS Systems</strong> <br><small>Infosys Springboard</small></li>
+                <li><strong>Mobile App Dev</strong> <br><small>DATANERZ.AI</small></li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Webinars</h3>
+            <ul style="padding-left: 15px;">
+                <li>Introduction to Blockchain Systems <br><small>(Cool Coder)</small></li>
+                <li>Basics of Python <br><small>(Cool Coder)</small></li>
+                <li>Cloud Computing <br><small>(Orionshift)</small></li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- Declaration Block -->
+    <section class="declaration">
+        <h3>Declaration</h3>
+        <p>I hereby declare that the above information is true to the best of my knowledge and belief.</p>
+        <div class="sig-space">
+            <div>
+                <p>Date: ______________</p>
+                <p>Place: -------------</p>
+            </div>
+            <div style="text-align: right;">
+                <p><strong>[S. Selvabharathi]</strong></p>
+                <p>Signature</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    const themeToggleBtn = document.getElementById('themeToggle');
+    
+    // Check if user has a pre-saved theme choice, otherwise match system configuration preference
+    const currentTheme = localStorage.getItem('theme') || 
+                         (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    
+    // Initialize the starting state
+    if (currentTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggleBtn.textContent = '🌙';
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeToggleBtn.textContent = '☀️';
+    }
+
+    // Toggle logic function
+    themeToggleBtn.addEventListener('click', () => {
+        let theme = document.documentElement.getAttribute('data-theme');
+        if (theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeToggleBtn.textContent = '☀️';
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggleBtn.textContent = '🌙';
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+</script>
+</body>
+</html>
