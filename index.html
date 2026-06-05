@@ -49,7 +49,7 @@
             transition: var(--transition);
         }
 
-        /* Interactive Theme Toggle Button */
+        /* Theme Toggle Button */
         .theme-toggle-btn {
             position: absolute;
             top: 25px;
@@ -111,9 +111,30 @@
             font-weight: 500;
         }
 
-        .contact-info a:hover {
+        .contact-info a:not(.download-btn):hover {
             color: var(--secondary-color);
             padding-left: 5px;
+        }
+
+        /* Download Resume Button styling */
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--secondary-color);
+            color: #ffffff !important;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4);
         }
 
         .profile-img {
@@ -130,7 +151,7 @@
             border-color: var(--secondary-color);
         }
 
-        /* Sections & Interaction */
+        /* Sections */
         section {
             margin-bottom: 35px;
         }
@@ -151,7 +172,7 @@
             color: var(--text-muted);
         }
 
-        /* Interactive Grid Blocks */
+        /* Grid Layouts */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -187,7 +208,7 @@
             margin-bottom: 6px;
         }
 
-        /* Interactive Skill Tags */
+        /* Skill Pill Tags */
         .skills-container {
             display: flex;
             flex-wrap: wrap;
@@ -236,7 +257,7 @@
             color: var(--text-muted);
         }
 
-        /* Responsive */
+        /* Responsive Layout styles */
         @media (max-width: 768px) {
             .container {
                 margin: 10px;
@@ -269,13 +290,12 @@
 <body>
 
 <div class="container">
-    <!-- Dark/Light Theme Toggle Switch Button -->
+    <!-- Dark/Light Mode Switcher Tool -->
     <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Theme">
-        <!-- Sun icon (will switch to Moon via JS) -->
         ☀️
     </button>
 
-    <!-- Header Section -->
+    <!-- Header Block -->
     <header>
         <div class="header-text">
             <h1>SELVABHARATHI S</h1>
@@ -285,21 +305,27 @@
                 <p>✉️ <a href="mailto:sselvabharathi1512@gmail.com">sselvabharathi1512@gmail.com</a></p>
                 <p>🔗 <a href="https://linkedin.com/in/selvabharathi15" target="_blank">linkedin.com/in/selvabharathi15</a></p>
                 <p>💻 <a href="https://github.com/SELVABHARATHI15" target="_blank">github.com/SELVABHARATHI15</a></p>
+                <p>
+                    <!-- Resume Download Link Pointing directly to root directory -->
+                    <a href="Selvabharathi_S_Resume.pdf" download="Selvabharathi_S_Resume.pdf" class="download-btn">
+                        📥 Download Resume (PDF)
+                    </a>
+                </p>
             </div>
         </div>
-        <!-- Default profile frame. Switch 'profile.jpg' with your photo filename -->
+        <!-- Profile Picture - ensure image name matches profile.jpg -->
         <img src="profile.png" alt="Selvabharathi S" class="profile-img">
     </header>
 
-    <!-- Objective Section -->
+    <!-- Objective Area -->
     <section>
         <h3>Objective</h3>
         <p>Aspiring IT professional with skills in software development and computer networking, seeking an opportunity to contribute to application development and network infrastructure management while continuously enhancing technical expertise.</p>
     </section>
 
-    <!-- Education & Skills Split Grid -->
+    <!-- Education and Technical Skills Layout Blocks -->
     <div class="grid-2">
-        <!-- Education Section -->
+        <!-- Education Container Section -->
         <section>
             <h3>Educational Profile</h3>
             <div class="interactive-card">
@@ -328,7 +354,7 @@
             </div>
         </section>
 
-        <!-- Interactive Technical Skills Tags Section -->
+        <!-- Technical Skill Pill Tags Element Blocks -->
         <section>
             <h3>Technical Skills</h3>
             <p><strong>Programming:</strong></p>
@@ -360,7 +386,7 @@
         </section>
     </div>
 
-    <!-- Projects Section -->
+    <!-- Project Presentation -->
     <section>
         <h3>Projects</h3>
         <div class="interactive-card">
@@ -390,7 +416,7 @@
         </div>
     </section>
 
-    <!-- Courses & Webinars Side-by-Side -->
+    <!-- Supplemental Content Grid (Courses & Events) -->
     <div class="grid-2">
         <section>
             <h3>Courses</h3>
@@ -414,7 +440,7 @@
         </section>
     </div>
 
-    <!-- Declaration Block -->
+    <!-- Formal Declaration Section block -->
     <section class="declaration">
         <h3>Declaration</h3>
         <p>I hereby declare that the above information is true to the best of my knowledge and belief.</p>
@@ -434,11 +460,11 @@
 <script>
     const themeToggleBtn = document.getElementById('themeToggle');
     
-    // Check if user has a pre-saved theme choice, otherwise match system configuration preference
+    // Fallback checks system setting if local storage configuration database values don't exist
     const currentTheme = localStorage.getItem('theme') || 
                          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     
-    // Initialize the starting state
+    // Set target state flags
     if (currentTheme === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
         themeToggleBtn.textContent = '🌙';
@@ -447,7 +473,7 @@
         themeToggleBtn.textContent = '☀️';
     }
 
-    // Toggle logic function
+    // Interactive event capture
     themeToggleBtn.addEventListener('click', () => {
         let theme = document.documentElement.getAttribute('data-theme');
         if (theme === 'dark') {
