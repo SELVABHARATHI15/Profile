@@ -14,8 +14,7 @@
             --text-muted: #555555;
             --border-color: #ecf0f1;
             --shadow: 0 10px 30px rgba(0,0,0,0.05);
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            --skill-bg: #e0e0e0;
+            --transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         [data-theme="dark"] {
@@ -27,7 +26,6 @@
             --text-muted: #a0a0a0;
             --border-color: #2c2c35;
             --shadow: 0 10px 30px rgba(0,0,0,0.3);
-            --skill-bg: #33333b;
         }
 
         body {
@@ -75,14 +73,22 @@
             color: white;
         }
 
-        /* Header Elements */
+        /* Balanced Header Layout matching size precisely */
         header {
             display: flex;
-            align-items: center;
+            align-items: stretch; /* Forces equal height match for columns */
             justify-content: space-between;
             padding-bottom: 35px;
             margin-bottom: 40px;
             border-bottom: 1px solid var(--border-color);
+            gap: 30px;
+        }
+
+        .header-content-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Ensures even distribution */
+            flex: 1;
         }
 
         .header-text h1 {
@@ -93,7 +99,7 @@
         }
 
         .header-text h2 {
-            margin: 0 0 20px 0;
+            margin: 0 0 15px 0;
             font-size: 1.3rem;
             color: var(--secondary-color);
             font-weight: 600;
@@ -103,12 +109,15 @@
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 12px;
         }
 
         .contact-info p {
             margin: 0;
             font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .contact-info a {
@@ -122,9 +131,11 @@
             padding-left: 4px;
         }
 
+        /* Image dimension matching contact wrapper height */
         .profile-img {
-            width: 140px;
-            height: 170px;
+            width: 145px;
+            height: auto;
+            min-height: 100%;
             object-fit: cover;
             border-radius: 16px;
             border: 4px solid var(--border-color);
@@ -133,11 +144,11 @@
         }
 
         .profile-img:hover {
-            transform: scale(1.05) rotate(2deg);
+            transform: scale(1.03) rotate(1deg);
             border-color: var(--secondary-color);
         }
 
-        /* Sections */
+        /* Section Layouts */
         section {
             margin-bottom: 45px;
         }
@@ -146,10 +157,12 @@
             color: var(--primary-color);
             font-size: 1.4rem;
             margin-top: 0;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
             gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         h3::after {
@@ -182,8 +195,8 @@
 
         .interactive-card:hover {
             background: var(--card-bg);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.06);
             border-color: var(--secondary-color);
         }
 
@@ -198,50 +211,59 @@
             font-style: italic;
             color: var(--text-muted);
             font-size: 0.95rem;
-            margin-bottom: 10px;
-        }
-
-        /* Interactive Animated Skill Levels */
-        .skill-bar-wrapper {
-            margin-bottom: 15px;
-        }
-
-        .skill-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            font-weight: 600;
             margin-bottom: 5px;
         }
 
-        .skill-bar-bg {
-            background: var(--skill-bg);
-            height: 8px;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
+        /* Interactive Skill Tag Containers */
+        .skills-wrapper {
+            margin-bottom: 20px;
         }
 
-        .skill-progress {
-            background: linear-gradient(90deg, var(--secondary-color), #2ecc71);
-            height: 100%;
-            border-radius: 10px;
-            width: 0; /* Animated dynamically via JS */
-            transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1);
+        .skills-wrapper label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
         }
 
-        /* Interactive Projects Tab View Layout */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: var(--border-color);
+            color: var(--text-color);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            cursor: default;
+        }
+
+        .skill-tag:hover {
+            background: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(52, 152, 219, 0.25);
+        }
+
+        /* Interactive Projects Tab Layout */
         .tabs-nav {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin-bottom: 25px;
         }
 
         .tab-btn {
             background: var(--border-color);
             color: var(--text-color);
             border: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
@@ -256,7 +278,7 @@
 
         .tab-content {
             display: none;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.4s ease;
         }
 
         .tab-content.active {
@@ -264,7 +286,7 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -277,11 +299,11 @@
             margin-bottom: 8px;
         }
 
-        /* Sticky/Bottom Download Action Section */
+        /* Bottom Floating Action Area Container */
         .bottom-action-container {
             text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
+            margin-top: 60px;
+            padding-top: 40px;
             border-top: 1px solid var(--border-color);
         }
 
@@ -291,31 +313,31 @@
             gap: 12px;
             background: linear-gradient(135deg, var(--secondary-color), #2980b9);
             color: white !important;
-            padding: 15px 35px;
+            padding: 16px 40px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
             font-size: 1.1rem;
-            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.25);
             transition: var(--transition);
             border: none;
             cursor: pointer;
         }
 
         .download-btn-premium:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.45);
         }
 
         .download-btn-premium svg {
             fill: white;
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             transition: var(--transition);
         }
 
         .download-btn-premium:hover svg {
-            transform: translateY(2px);
+            transform: translateY(3px);
         }
 
         /* Responsive Layout styles */
@@ -334,11 +356,14 @@
             }
             .grid-2 {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 25px;
             }
             .card-header {
                 flex-direction: column;
                 gap: 5px;
+            }
+            .tabs-nav {
+                flex-direction: column;
             }
         }
     </style>
@@ -346,16 +371,18 @@
 <body>
 
 <div class="container">
-    <!-- Dark/Light Theme Switching Icon Button -->
+    <!-- Dark/Light Theme Switching Button -->
     <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Theme">
         ☀️
     </button>
 
-    <!-- Header Block -->
+    <!-- Balanced Header Block -->
     <header>
-        <div class="header-text">
-            <h1>SELVABHARATHI S</h1>
-            <h2>B.Tech. Information Technology</h2>
+        <div class="header-content-left">
+            <div class="header-text">
+                <h1>SELVABHARATHI S</h1>
+                <h2>B.Tech. Information Technology</h2>
+            </div>
             <div class="contact-grid">
                 <p>📞 <a href="tel:+917603861914">+91 7603861914</a></p>
                 <p>✉️ <a href="mailto:sselvabharathi1512@gmail.com">sselvabharathi1512@gmail.com</a></p>
@@ -363,7 +390,7 @@
                 <p>💻 <a href="https://github.com/SELVABHARATHI15" target="_blank">github.com/SELVABHARATHI15</a></p>
             </div>
         </div>
-        <!-- Profile Picture switched cleanly to target PNG layout extension format -->
+        <!-- Profile Picture PNG formatting asset frame matching left content size exactly -->
         <img src="profile.png" alt="Selvabharathi S" class="profile-img">
     </header>
 
@@ -373,14 +400,14 @@
         <p>Aspiring IT professional with skills in software development and computer networking, seeking an opportunity to contribute to application development and network infrastructure management while continuously enhancing technical expertise.</p>
     </section>
 
-    <!-- Split Grid Layout for Education and Interactive Skill Levels -->
+    <!-- Split Grid Layout for Education and Interactive Skill Tags -->
     <div class="grid-2">
-        <!-- Education Section Grid Block -->
+        <!-- Education Section -->
         <section>
             <h3>Educational Profile</h3>
             <div class="interactive-card">
                 <div class="card-header">
-                    <span>B.Tech - IT</span>
+                    <span>B.Tech - Information Technology</span>
                     <span>2022 - 2026</span>
                 </div>
                 <div class="sub-header">E.G.S Pillay Engineering College, Nagapattinam</div>
@@ -404,38 +431,59 @@
             </div>
         </section>
 
-        <!-- Technical Animated Skill Bar Progress Grid Blocks -->
+        <!-- Technical Skill Element Container Blocks -->
         <section>
             <h3>Technical Skills</h3>
             
-            <div class="skill-bar-wrapper">
-                <div class="skill-info"><span>Web Technologies (Node, HTML, JS)</span><span>85%</span></div>
-                <div class="skill-bar-bg"><div class="skill-progress" data-progress="85%"></div></div>
+            <div class="skills-wrapper">
+                <label>Programming Languages</label>
+                <div class="skills-container">
+                    <span class="skill-tag">C</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Java</span>
+                </div>
             </div>
 
-            <div class="skill-bar-wrapper">
-                <div class="skill-info"><span>Programming (Java, Python, C)</span><span>80%</span></div>
-                <div class="skill-bar-bg"><div class="skill-progress" data-progress="80%"></div></div>
+            <div class="skills-wrapper">
+                <label>Web Technologies</label>
+                <div class="skills-container">
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Node.js</span>
+                </div>
             </div>
 
-            <div class="skill-bar-wrapper">
-                <div class="skill-info"><span>Databases (SQL, MongoDB)</span><span>75%</span></div>
-                <div class="skill-bar-bg"><div class="skill-progress" data-progress="75%"></div></div>
+            <div class="skills-wrapper">
+                <label>Databases & Networks</label>
+                <div class="skills-container">
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">Cisco Packet Tracer</span>
+                </div>
             </div>
 
-            <div class="skill-bar-wrapper">
-                <div class="skill-info"><span>Networking (Cisco Packet Tracer)</span><span>70%</span></div>
-                <div class="skill-bar-bg"><div class="skill-progress" data-progress="70%"></div></div>
+            <div class="skills-wrapper">
+                <label>Development & AI Tools</label>
+                <div class="skills-container">
+                    <span class="skill-tag">Cursor</span>
+                    <span class="skill-tag">Windsurf</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">GitHub</span>
+                    <span class="skill-tag">VS Code</span>
+                </div>
             </div>
 
-            <div class="skill-bar-wrapper">
-                <div class="skill-info"><span>Tools (Git, GitHub, VS Code)</span><span>85%</span></div>
-                <div class="skill-bar-bg"><div class="skill-progress" data-progress="85%"></div></div>
+            <div class="skills-wrapper">
+                <label>Languages</label>
+                <div class="skills-container">
+                    <span class="skill-tag">Tamil</span>
+                    <span class="skill-tag">English</span>
+                </div>
             </div>
         </section>
     </div>
 
-    <!-- Interactive Projects Area with Dynamic Tab Swapper Logic -->
+    <!-- Interactive Projects Area with Dynamic Tab Switching Logic -->
     <section>
         <h3>Projects</h3>
         <div class="tabs-nav">
@@ -446,7 +494,7 @@
         <div id="pii-app" class="tab-content active interactive-card">
             <div class="card-header">
                 <span style="font-size: 1.2rem;">PII Detection App</span>
-                <span style="color: var(--secondary-color);">Android Studio / Java</span>
+                <span style="color: var(--secondary-color);">Android Studio</span>
             </div>
             <p style="margin: 10px 0;">Developed an Android application to detect and blur Personally Identifiable Information (PII) in images.</p>
             <ul>
@@ -458,9 +506,9 @@
         <div id="ecommerce-app" class="tab-content interactive-card">
             <div class="card-header">
                 <span style="font-size: 1.2rem;">E-Commerce Application</span>
-                <span style="color: var(--secondary-color);">Node.js / Express / MongoDB</span>
+                <span style="color: var(--secondary-color);">Backend Architecture</span>
             </div>
-            <p style="margin: 10px 0;">Built a secure, scalable dynamic dynamic transaction API ecosystem platform architecture structure handling routing paths cleanly.</p>
+            <p style="margin: 10px 0;">Built a secure, scalable transaction engine platform backend managing core API schemas seamlessly.</p>
             <ul>
                 <li>Built using Node.js, Express.js, and MongoDB.</li>
                 <li>Added JWT-based authentication for secure access.</li>
@@ -470,7 +518,7 @@
         </div>
     </section>
 
-    <!-- Supplemental Credentials Grid Section Block -->
+    <!-- Credentials & Knowledge Grid Sections -->
     <div class="grid-2">
         <section>
             <h3>Courses</h3>
@@ -494,10 +542,9 @@
         </section>
     </div>
 
-    <!-- Relocated Interactive Action Area at Bottom of Page Containing Premium Download Elements -->
+    <!-- Premium Relocated Action Section Containing Resume Download Links -->
     <div class="bottom-action-container">
         <a href="Selvabharathi_S_Resume.pdf" download="Selvabharathi_S_Resume.pdf" class="download-btn-premium">
-            <!-- Inline Responsive SVG Vector Download Icon -->
             <svg viewBox="0 0 24 24">
                 <path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/>
             </svg>
@@ -507,7 +554,7 @@
 </div>
 
 <script>
-    // Theme Switch Logic
+    // Theme Switch Engine
     const themeToggleBtn = document.getElementById('themeToggle');
     const currentTheme = localStorage.getItem('theme') || 
                          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -525,7 +572,7 @@
         setTheme(theme);
     });
 
-    // Dynamic Project Switch Tab Actions
+    // Dynamic Tab Navigation Switches
     function switchTab(evt, tabId) {
         const tabContents = document.getElementsByClassName("tab-content");
         for (let i = 0; i < tabContents.length; i++) {
@@ -540,17 +587,6 @@
         document.getElementById(tabId).classList.add("active");
         evt.currentTarget.classList.add("active");
     }
-
-    // Animate Technical Skill Progress Meters sequentially
-    document.addEventListener("DOMContentLoaded", () => {
-        setTimeout(() => {
-            const progressBars = document.querySelectorAll('.skill-progress');
-            progressBars.forEach(bar => {
-                const targetWidth = bar.getAttribute('data-progress');
-                bar.style.width = targetWidth;
-            });
-        }, 300);
-    });
 </script>
 </body>
 </html>
